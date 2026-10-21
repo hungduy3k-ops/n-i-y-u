@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chúc mừng 20/10 – Kính tặng Nội</title>
+<style>
+:root{
+  --bg:#fff3f0; --bg2:#ffe1e6; --ink:#4a2330; --muted:#8a5565; --card:#ffffff;
+  --accent:#e0477b; --accent2:#ff8fab; --flap:#d6386d; --shadow:rgba(224,71,123,.25);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#2a1620;--bg2:#3a1c2a;--ink:#ffe8ee;--muted:#e9b3c3;--card:#3b2230;--accent:#ff7aa6;--accent2:#ff9fbd;--flap:#e0608a;--shadow:rgba(0,0,0,.45);}
+}
+:root[data-theme="dark"]{--bg:#2a1620;--bg2:#3a1c2a;--ink:#ffe8ee;--muted:#e9b3c3;--card:#3b2230;--accent:#ff7aa6;--accent2:#ff9fbd;--flap:#e0608a;--shadow:rgba(0,0,0,.45);}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:linear-gradient(160deg,var(--bg),var(--bg2));color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;font-size:20px;line-height:1.6;display:flex;justify-content:center;overflow-x:hidden}
+main{width:100%;max-width:640px;padding:28px 20px 48px;text-align:center;position:relative;z-index:2}
+h1{font-size:clamp(30px,8vw,46px);line-height:1.2;margin:8px 0 4px;color:var(--accent)}
+.sub{color:var(--muted);margin:0 0 10px}
+.flower{font-size:64px;line-height:1;margin-top:10px}
+.hint{color:var(--muted);font-size:18px;margin:6px 0 0;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{50%{opacity:.45}}
+
+/* Phong thư */
+.env{position:relative;display:block;width:min(320px,82vw);height:210px;margin:34px auto 20px;padding:0;border:0;background:none;cursor:pointer;perspective:900px;font:inherit}
+.env .back{position:absolute;inset:0;background:var(--accent2);border-radius:10px;box-shadow:0 10px 26px var(--shadow)}
+.env .paper{position:absolute;left:8%;right:8%;top:10%;height:80%;background:var(--card);border-radius:6px;z-index:1;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:34px;transition:transform .8s .45s ease}
+.env .front{position:absolute;inset:0;background:var(--accent);border-radius:10px;z-index:2;
+  clip-path:polygon(0 100%,0 28%,50% 64%,100% 28%,100% 100%)}
+.env .flap{position:absolute;left:0;right:0;top:0;height:64%;background:var(--flap);z-index:3;transform-origin:top;
+  clip-path:polygon(0 0,100% 0,50% 100%);transition:transform .6s ease,z-index 0s .3s;border-radius:10px 10px 0 0}
+.env .seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;font-size:34px;transition:opacity .3s}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.env.open .paper{transform:translateY(-62px)}
+.env.open .seal{opacity:0}
+.env:not(.open):hover{transform:translateY(-3px)}
+.env{transition:transform .2s}
+
+.letter{display:none;margin-top:14px;background:var(--card);border-radius:22px;padding:26px 22px;box-shadow:0 10px 30px var(--shadow);text-align:left;animation:rise .8s ease both}
+.letter.show{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.letter h2{margin:0 0 12px;font-size:26px;color:var(--accent);text-align:center}
+.letter p{margin:0 0 14px}
+.wishes{list-style:none;padding:0;margin:0 0 16px}
+.wishes li{padding:8px 0 8px 36px;position:relative}
+.wishes li::before{content:"🌸";position:absolute;left:0;top:8px}
+.sign{text-align:right;font-style:italic;color:var(--muted);margin-top:8px}
+.again{margin-top:18px;background:none;border:2px solid var(--accent2);color:var(--accent);font:inherit;font-size:18px;border-radius:999px;padding:8px 20px;cursor:pointer}
+.petal{position:fixed;top:-40px;z-index:1;pointer-events:none;animation:fall linear forwards;will-change:transform}
+@keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot))}}
+@media (prefers-reduced-motion:reduce){.hint{animation:none}.petal{display:none}.letter{animation:none}.env .paper,.env .flap{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <div class="flower" aria-hidden="true">💐</div>
+  <h1>Chúc mừng ngày 20/10</h1>
+  <p class="sub">Một lá thư nhỏ gửi Nội yêu quý</p>
+
+  <button class="env" id="env" type="button" aria-label="Mở thư">
+    <span class="back"></span>
+    <span class="paper" aria-hidden="true">💌</span>
+    <span class="front"></span>
+    <span class="flap"></span>
+    <span class="seal" aria-hidden="true">❤️</span>
+  </button>
+  <p class="hint" id="hint">Chạm vào phong thư để mở</p>
+
+  <section class="letter" id="letter" aria-live="polite">
+    <h2>Gửi Nội,</h2>
+    <p>Nhân ngày Phụ nữ Việt Nam 20/10, cháu muốn nói với Nội rằng: cháu thương Nội nhiều lắm. Nội đã vất vả cả đời vì gia đình, vì con vì cháu, và cháu luôn biết ơn Nội.</p>
+    <p>Cháu xin chúc Nội:</p>
+    <ul class="wishes">
+      <li>Luôn khỏe mạnh, ăn ngon, ngủ ngon.</li>
+      <li>Thật nhiều niềm vui và nụ cười mỗi ngày.</li>
+      <li>Bình an, sống lâu trăm tuổi bên con cháu.</li>
+      <li>Mãi là bà tiên hiền hậu của cả nhà.</li>
+    </ul>
+    <p>Chúc Nội một ngày 20/10 thật vui và ấm áp!</p>
+    <p class="sign">Cháu của Nội ❤️</p>
+    <div style="text-align:center"><button class="again" id="again" type="button">🌸 Rải hoa lần nữa</button></div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var petals=["🌸","🌷","🌺","💮","🌼"];
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function rain(n){
+    if(reduce)return;
+    for(var i=0;i<n;i++){
+      (function(i){
+        setTimeout(function(){
+          var s=document.createElement("span");
+          s.className="petal";
+          s.textContent=petals[Math.floor(Math.random()*petals.length)];
+          s.style.left=Math.random()*100+"vw";
+          s.style.fontSize=(18+Math.random()*22)+"px";
+          var d=4+Math.random()*4;
+          s.style.animationDuration=d+"s";
+          s.style.setProperty("--dx",(Math.random()*160-80)+"px");
+          s.style.setProperty("--rot",(Math.random()*720-360)+"deg");
+          document.body.appendChild(s);
+          setTimeout(function(){s.remove();},d*1000+200);
+        },i*90);
+      })(i);
+    }
+  }
+  var env=document.getElementById("env"),letter=document.getElementById("letter"),hint=document.getElementById("hint");
+  env.addEventListener("click",function(){
+    if(env.classList.contains("open"))return;
+    env.classList.add("open");
+    hint.style.display="none";
+    rain(60);
+    setTimeout(function(){
+      letter.classList.add("show");
+      letter.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+    },1100);
+  });
+  document.getElementById("again").addEventListener("click",function(){rain(60);});
+})();
+</script>
+</body>
+</html>
